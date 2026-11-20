@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>detail-01-hook (전문직)</title>
+  <link rel="stylesheet" href="./shared-kmong.css" />
+  <style>
+    html, body { height: auto; }
+    .canvas { width: 860px; height: auto; background: #ffffff; display: flex; flex-direction: column; }
+    .hero {
+      padding: 48px 52px 54px;
+      background: radial-gradient(circle at 80% 15%, rgba(14, 165, 233, 0.2), transparent 50%), #0b0f19;
+      color: #ffffff;
+    }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(56, 189, 248, 0.14); border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #bae6fd; font-size: 13px; font-weight: 800; padding: 7px 14px; border-radius: 999px;
+    }
+    .hero h1 {
+      margin-top: 20px; font-size: 38px; font-weight: 900; line-height: 1.28; letter-spacing: -0.025em;
+    }
+    .hero h1 .hl { color: #38bdf8; }
+    .hero p { margin-top: 14px; font-size: 17px; line-height: 1.65; color: #cbd5e1; }
+    .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    .pain-card {
+      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px; padding: 20px 18px;
+    }
+    .pain-num { font-size: 12px; font-weight: 800; color: #fb7185; letter-spacing: 0.06em; }
+    .pain-card h3 { margin-top: 8px; font-size: 17px; font-weight: 800; line-height: 1.35; }
+    .pain-card p { margin-top: 8px; font-size: 13.5px; line-height: 1.55; color: #94a3b8; }
+
+    .solution { padding: 46px 52px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .sec-head .kicker { color: #1d4ed8; font-size: 13px; font-weight: 800; letter-spacing: 0.1em; }
+    .sec-head h2 { margin-top: 8px; font-size: 30px; font-weight: 900; line-height: 1.3; }
+    .sol-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 24px; }
+    .sol-card {
+      border: 1px solid #e2e8f0; border-radius: 18px; padding: 24px 22px; background: #f8fafc;
+    }
+    .sol-badge {
+      display: inline-block; font-size: 12px; font-weight: 800; color: #1d4ed8;
+      background: #e0f2fe; padding: 4px 10px; border-radius: 999px;
+    }
+    .sol-card h3 { margin-top: 12px; font-size: 19px; font-weight: 800; color: #0f172a; }
+    .sol-card p { margin-top: 8px; font-size: 14px; line-height: 1.6; color: #475569; }
+
+    .bottom-banner {
+      margin-top: 24px; border-radius: 18px; padding: 22px 26px;
+      background: linear-gradient(135deg, #0ea5e9, #1d4ed8); color: #ffffff;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .bottom-banner strong { display: block; font-size: 18px; font-weight: 900; }
+    .bottom-banner span { display: block; margin-top: 4px; font-size: 13.5px; color: #e0f2fe; }
+    .cta-pill {
+      flex-shrink: 0; background: #0b0f19; color: #ffffff; font-size: 15px; font-weight: 900;
+      padding: 12px 20px; border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="hero">
+      <div class="hero-pill">변호사 · 세무사 · 노무사 · 행정사 개업 사무소 전용</div>
+      <h1>
+        수임료 수백만 원을 맡기는 의뢰인이,<br />
+        <span class="hl">20만 원대 복붙 홈페이지</span>를 신뢰할까요?
+      </h1>
+      <p>
+        개업 초기, 의뢰인이 사무소 이름을 검색해 들어오는 첫 관문은 홈페이지입니다.<br />
+        가벼운 템플릿과 매달 빠져나가는 임대료 대신, 한 번에 제대로 소유하세요.
+      </p>
+
+      <div class="pain-grid">
+        <div class="pain-card">
+          <div class="pain-num">PAIN 01 · 신뢰 하락</div>
+          <h3>티 나는 복붙 디자인</h3>
+          <p>저가 템플릿 특유의 촌스러운 구조는 전문직의 핵심인 묵직한 권위감을 깎아먹습니다.</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-num">PAIN 02 · 고정비 누수</div>
+          <h3>매달 내는 웹빌더 임대료</h3>
+          <p>임대형은 매월 요금이 빠져나가고, 해지하면 공들인 사이트와 데이터도 사라집니다.</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-num">PAIN 03 · 원고 막막함</div>
+          <h3>바쁜데 글까지 다 써오라니</h3>
+          <p>개업 준비로 바쁜데 "원고 다 주셔야 시작합니다"라는 말에 제작이 몇 주씩 밀립니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="solution">
+      <div>
+        <div class="sec-head">
+          <div class="kicker">ELEVEWEB SOLUTION</div>
+          <h2>14년 차 현업 개발 총괄이 직접 설계하는<br />전문직 100% 소유형 홈페이지</h2>
+        </div>
+
+        <div class="sol-grid">
+          <div class="sol-card">
+            <span class="sol-badge">01 · 하청·재위탁 0%</span>
+            <h3>14년 차 기업 시스템 개발 총괄 직접 제작</h3>
+            <p>14년간 대기업·이커머스·기업 시스템을 구축하고 운영해 온 현업 개발 총괄이 직접 설계해 서버 멈춤이나 보안 구멍 없이 안정적입니다.</p>
+          </div>
+          <div class="sol-card">
+            <span class="sol-badge">02 · 제작사 월 관리비 0원</span>
+            <h3>원본 소스·DB·도메인 100% 영구 소유</h3>
+            <p>납품과 동시에 모든 권한과 데이터를 사무소 명의로 넘겨드립니다. 제작사에 매달 내는 임대료나 플랫폼 종속이 전혀 없습니다.</p>
+          </div>
+          <div class="sol-card">
+            <span class="sol-badge">03 · 글쓰기 부담 제로</span>
+            <h3>5분 설문지만 주시면 카피 초안 세팅</h3>
+            <p>사무소 약력·강점 3줄 메모만 주세요. 의뢰인이 상담 예약 버튼까지 누르게 만드는 세일즈 문구 초안을 무료로 세팅해 드립니다.</p>
+          </div>
+          <div class="sol-card">
+            <span class="sol-badge">04 · 개업 경비 100% 증빙</span>
+            <h3>일반과세자 전자세금계산서 즉시 발행</h3>
+            <p>개업 비용 세무 처리를 위한 전자세금계산서, 비교견적서, 거래명세서를 100% 발행해 드립니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-banner">
+        <div>
+          <strong>"우리 사무소 분야에 딱 맞는 구성이 궁금하신가요?"</strong>
+          <span>크몽 메시지로 분야(변호사/세무사/노무사/행정사)만 남겨주세요. 맞춤 샘플을 바로 안내해 드립니다.</span>
+        </div>
+        <div class="cta-pill">론칭 특가 49만 원~</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

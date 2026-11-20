@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>detail-04-admin-trust (전문직 관리자 콘솔)</title>
+  <link rel="stylesheet" href="./shared-kmong.css" />
+  <style>
+    html, body { height: auto; }
+    .canvas { width: 860px; height: auto; background: #ffffff; padding: 48px 46px 52px; }
+    .head .kicker { color: #1d4ed8; font-size: 14px; font-weight: 800; letter-spacing: 0.1em; }
+    .head h2 { margin-top: 8px; font-size: 32px; font-weight: 900; line-height: 1.3; }
+    .head p { margin-top: 10px; font-size: 16px; color: #475569; line-height: 1.5; }
+
+    /* Actual Admin Console Frame (/admin/reservations & /admin/cms) */
+    .admin-window {
+      margin-top: 24px; border: 1.5px solid #cbd5e1; border-radius: 18px; overflow: hidden;
+      box-shadow: 0 14px 32px -12px rgba(15, 23, 42, 0.16); background: #f8fafc;
+    }
+    .win-bar {
+      background: #0b0f19; color: #e2e8f0; padding: 11px 18px; display: flex; align-items: center; justify-content: space-between;
+      font-size: 12px; font-weight: 700;
+    }
+    .win-bar .title { color: #38bdf8; font-weight: 900; }
+    .win-layout { display: grid; grid-template-columns: 185px 1fr; min-height: 330px; }
+    .sidebar {
+      background: #0f172a; color: #94a3b8; padding: 18px 14px; display: flex; flex-direction: column; gap: 6px; font-size: 12.5px;
+    }
+    .side-brand { color: #ffffff; font-weight: 900; font-size: 14px; padding: 0 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 6px; }
+    .side-item { padding: 9px 10px; border-radius: 8px; font-weight: 700; }
+    .side-item.active { background: #1d4ed8; color: #ffffff; }
+
+    .main-area { padding: 18px 20px; background: #f8fafc; }
+    .kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .kpi { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; }
+    .kpi span { font-size: 11.5px; font-weight: 700; color: #64748b; }
+    .kpi strong { display: block; font-size: 20px; font-weight: 900; color: #0f172a; margin-top: 3px; }
+
+    .res-table {
+      margin-top: 14px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;
+    }
+    .res-head {
+      background: #f1f5f9; padding: 10px 14px; font-size: 12px; font-weight: 800; color: #334155;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .res-row {
+      display: grid; grid-template-columns: 1.1fr 1.4fr 1fr 0.8fr; padding: 11px 14px; border-top: 1px solid #f1f5f9;
+      font-size: 12.5px; align-items: center; color: #1e293b;
+    }
+    .status-pill {
+      display: inline-block; text-align: center; font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 999px;
+    }
+    .st-new { background: #dbeafe; color: #1d4ed8; }
+    .st-done { background: #dcfce7; color: #15803d; }
+
+    .cms-strip {
+      margin-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    }
+    .cms-card {
+      background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 11px 14px;
+      display: flex; justify-content: space-between; align-items: center; font-size: 12.5px;
+    }
+    .cms-card strong { color: #0f172a; font-weight: 800; }
+    .cms-btn { background: #0ea5e9; color: #ffffff; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 6px; }
+
+    .trust-sec { margin-top: 28px; }
+    .trust-sec h3 { font-size: 22px; font-weight: 900; color: #0f172a; }
+    .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+    .trust-card {
+      border: 1.5px solid #bae6fd; background: #f0f9ff; border-radius: 16px; padding: 20px 18px;
+    }
+    .trust-card .num { font-size: 12px; font-weight: 900; color: #0284c7; }
+    .trust-card h4 { margin-top: 8px; font-size: 17px; font-weight: 900; color: #0f172a; line-height: 1.35; }
+    .trust-card p { margin-top: 8px; font-size: 14px; line-height: 1.55; color: #334155; }
+
+    .sla-bar {
+      margin-top: 22px; border-radius: 16px; background: #0b0f19; color: #ffffff;
+      padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    }
+    .sla-bar strong { font-size: 16px; font-weight: 900; color: #38bdf8; }
+    .sla-bar span { font-size: 14px; color: #cbd5e1; display: block; margin-top: 4px; }
+    .sla-badge { flex-shrink: 0; background: #1d4ed8; color: #ffffff; font-size: 13px; font-weight: 800; padding: 10px 16px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="head">
+      <div class="kicker">NO-CODE ADMIN &amp; ZERO RISK</div>
+      <h2>개발자 없이 사무소 직원이 1분 만에<br />예약·승소사례·칼럼을 직접 관리합니다</h2>
+      <p>실제 구축되는 전용 한글 관리자 콘솔 화면입니다. 매번 수정할 때마다 추가 외주 비용이 들지 않습니다.</p>
+    </div>
+
+    <!-- Real Admin Console Mockup -->
+    <div class="admin-window">
+      <div class="win-bar">
+        <span class="title">eleveWeb 전용 한글 관리자 콘솔 (실제 구동 화면)</span>
+        <span>대표전화 02-000-0000 · SSL 보안 적용</span>
+      </div>
+      <div class="win-layout">
+        <div class="sidebar">
+          <div class="side-brand">eW 관리자 센터</div>
+          <div class="side-item active">1:1 상담예약 관리</div>
+          <div class="side-item">승소·성공사례 DB</div>
+          <div class="side-item">칼럼 · 공지사항</div>
+          <div class="side-item">배너 · 팝업 스위치</div>
+          <div class="side-item">검색(SEO)·카톡 이미지</div>
+        </div>
+        <div class="main-area">
+          <div class="kpi-row">
+            <div class="kpi"><span>신규 상담예약</span><strong>4건</strong></div>
+            <div class="kpi"><span>등록된 승소사례</span><strong>28건</strong></div>
+            <div class="kpi"><span>웹 이미지 자동경량화</span><strong>WebP ON</strong></div>
+          </div>
+
+          <div class="res-table">
+            <div class="res-head">
+              <span>실시간 1:1 비밀상담 예약 현황</span>
+              <span>원클릭 상태 변경</span>
+            </div>
+            <div class="res-row">
+              <strong>김OO 의뢰인</strong>
+              <span>[형사] 기업 배임 관련 비밀상담</span>
+              <span>010-0000-0000</span>
+              <span class="status-pill st-new">신규접수</span>
+            </div>
+            <div class="res-row">
+              <strong>박OO 대표</strong>
+              <span>[세무] 병의원 성실신고·법인전환</span>
+              <span>010-0000-0000</span>
+              <span class="status-pill st-done">상담확정</span>
+            </div>
+          </div>
+
+          <div class="cms-strip">
+            <div class="cms-card">
+              <div><strong>승소사례·칼럼 새 글 등록</strong><br /><span style="color:#64748b;font-size:11px;">사진 올리면 WebP 자동 압축</span></div>
+              <span class="cms-btn">1분 등록</span>
+            </div>
+            <div class="cms-card">
+              <div><strong>네이버·구글 SEO / 카톡 OG</strong><br /><span style="color:#64748b;font-size:11px;">검색 제목·공유 이미지 즉시 교체</span></div>
+              <span class="cms-btn">즉시 반영</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trust-sec">
+      <h3>리뷰가 쌓이기 전에도 안심할 수 있는 3대 안전 보장</h3>
+      <div class="trust-grid">
+        <div class="trust-card">
+          <div class="num">GUARANTEE 01</div>
+          <h4>사전 협의 방향과 다를 시<br />100% 전액 환불</h4>
+          <p>사전 협의된 레퍼런스·기획 방향과 명백히 다를 경우 개발 착수 전 100% 전액 환불해 드립니다.</p>
+        </div>
+        <div class="trust-card">
+          <div class="num">GUARANTEE 02</div>
+          <h4>납품 후 무상<br />하자보수 1~3개월</h4>
+          <p>오픈 이후 발생하는 오류나 기능 이상은 패키지별 1~3개월간 무상으로 신속 조치합니다.</p>
+        </div>
+        <div class="trust-card">
+          <div class="num">GUARANTEE 03</div>
+          <h4>세금계산서 &amp; 소스<br />100% 사무소 귀속</h4>
+          <p>일반과세자 전자세금계산서 100% 발행 및 소스코드·DB·도메인 영구 소유권을 보장합니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sla-bar">
+      <div>
+        <strong>서버 관리 걱정 제로 · 무중단 자동 복구 &amp; SSL 자동 갱신</strong>
+        <span>평생 무료 SSL 인증서 자동 갱신까지 세팅해 드리므로 오픈 후 서버를 직접 관리하실 일이 전혀 없습니다.</span>
+      </div>
+      <div class="sla-badge">일반과세자 100% 증빙</div>
+    </div>
+  </div>
+</body>
+</html>

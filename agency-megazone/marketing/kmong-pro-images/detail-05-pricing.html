@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>detail-05-pricing (전문직 1+2 구조)</title>
+  <link rel="stylesheet" href="./shared-kmong.css" />
+  <style>
+    html, body { height: auto; }
+    .canvas { width: 860px; height: auto; background: #f8fafc; padding: 46px 44px 50px; }
+    .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+    .head .kicker { color: #1d4ed8; font-size: 14px; font-weight: 800; letter-spacing: 0.1em; }
+    .head h2 { margin-top: 6px; font-size: 32px; font-weight: 900; line-height: 1.28; }
+    .urgency {
+      flex-shrink: 0; background: #1d4ed8; color: #ffffff; padding: 12px 18px; border-radius: 12px; text-align: right;
+    }
+    .urgency strong { display: block; font-size: 15px; font-weight: 900; }
+    .urgency small { font-size: 12.5px; color: #e0f2fe; font-weight: 600; }
+
+    /* Top Featured Card: DELUXE (Wide 1-col) */
+    .deluxe-featured {
+      margin-top: 24px; background: #0b0f19; color: #ffffff; border: 2.5px solid #0ea5e9;
+      border-radius: 22px; padding: 28px 30px; position: relative;
+      box-shadow: 0 18px 36px -12px rgba(14, 165, 233, 0.35);
+      display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 26px; align-items: center;
+    }
+    .best-tag {
+      position: absolute; top: -14px; left: 28px; background: linear-gradient(135deg, #0ea5e9, #1d4ed8);
+      color: #ffffff; font-size: 13px; font-weight: 900; padding: 5px 16px; border-radius: 999px;
+    }
+    .deluxe-left h3 { font-size: 26px; font-weight: 900; color: #ffffff; }
+    .deluxe-left .sub { font-size: 14.5px; color: #94a3b8; margin-top: 6px; font-weight: 600; }
+    .deluxe-left .anchor-price { margin-top: 16px; font-size: 16px; color: #94a3b8; text-decoration: line-through; font-weight: 700; }
+    .deluxe-left .real-price { font-size: 40px; font-weight: 900; color: #38bdf8; margin-top: 2px; letter-spacing: -0.02em; }
+    .deluxe-left .vat-note { font-size: 13px; color: #bae6fd; margin-top: 4px; font-weight: 700; }
+    .deluxe-left .foot-pill {
+      display: inline-block; margin-top: 14px; background: rgba(14, 165, 233, 0.16);
+      border: 1px solid rgba(56, 189, 248, 0.4); color: #7dd3fc; font-size: 13.5px; font-weight: 800;
+      padding: 7px 14px; border-radius: 10px;
+    }
+    .deluxe-right ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .deluxe-right ul li { font-size: 15.5px; line-height: 1.45; padding-left: 22px; position: relative; color: #f1f5f9; font-weight: 600; }
+    .deluxe-right ul li::before { content: "✓"; position: absolute; left: 0; color: #38bdf8; font-weight: 900; }
+
+    /* Bottom 2-col Grid: STANDARD & PREMIUM */
+    .pkg-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 20px; }
+    .pkg {
+      background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 20px; padding: 24px 22px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .pkg h3 { font-size: 21px; font-weight: 900; color: #0f172a; }
+    .pkg .sub { font-size: 14px; color: #64748b; margin-top: 4px; font-weight: 600; }
+    .pkg .anchor-price { margin-top: 14px; font-size: 14.5px; color: #94a3b8; text-decoration: line-through; font-weight: 700; }
+    .pkg .real-price { font-size: 32px; font-weight: 900; color: #0f172a; margin-top: 2px; }
+    .pkg .vat-note { font-size: 12.5px; color: #64748b; margin-top: 2px; font-weight: 700; }
+    .std-limit-note {
+      margin-top: 12px; background: #fff7ed; border: 1px solid #fed7aa; color: #9a3412;
+      font-size: 13px; font-weight: 800; padding: 9px 12px; border-radius: 10px; line-height: 1.45;
+    }
+    .pkg ul { list-style: none; margin-top: 14px; display: flex; flex-direction: column; gap: 9px; }
+    .pkg ul li { font-size: 14.5px; line-height: 1.45; padding-left: 18px; position: relative; color: #334155; font-weight: 500; }
+    .pkg ul li::before { content: "✓"; position: absolute; left: 0; color: #1d4ed8; font-weight: 900; }
+    .pkg-foot {
+      margin-top: 16px; padding-top: 12px; border-top: 1px solid #e2e8f0;
+      font-size: 13.5px; font-weight: 800; color: #1d4ed8;
+    }
+
+    .bonus-box {
+      margin-top: 20px; background: #eff6ff; border: 1.5px solid #93c5fd; border-radius: 18px; padding: 20px 22px;
+    }
+    .bonus-box h4 { font-size: 16px; font-weight: 900; color: #1e3a8a; }
+    .bonus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+    .bonus-item { background: #ffffff; border-radius: 10px; padding: 13px; border: 1px solid #bfdbfe; font-size: 13.5px; font-weight: 800; color: #0f172a; line-height: 1.4; }
+    .bonus-item span { display: block; font-size: 11.5px; color: #1d4ed8; margin-bottom: 4px; }
+
+    .opt-box {
+      margin-top: 18px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 18px; padding: 20px 22px;
+    }
+    .opt-box h4 { font-size: 15.5px; font-weight: 900; color: #0f172a; margin-bottom: 12px; }
+    .opt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; font-size: 13.5px; color: #334155; }
+    .opt-item { background: #f8fafc; padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0; font-weight: 700; }
+    .opt-item strong { display: block; color: #1d4ed8; font-size: 15px; margin-top: 4px; font-weight: 900; }
+    .infra-note { margin-top: 14px; font-size: 13.5px; color: #334155; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="head">
+      <div>
+        <div class="kicker">TRANSPARENT PRICING</div>
+        <h2>전문직 개업 사무소 정찰제 패키지</h2>
+      </div>
+      <div class="urgency">
+        <strong>선착순 3개사 론칭 파트너 특가</strong>
+        <small>마감 시 정상가(69·129·219만)로 전환</small>
+      </div>
+    </div>
+
+    <!-- 1. Featured DELUXE Card (Full Width) -->
+    <div class="deluxe-featured">
+      <div class="best-tag">★ BEST 전문직 주력 추천</div>
+      <div class="deluxe-left">
+        <h3>DELUXE 패키지</h3>
+        <div class="sub">변호사·세무사·노무사 표준형 · 납기 14일</div>
+        <div class="anchor-price">정상가 1,290,000원</div>
+        <div class="real-price">990,000원</div>
+        <div class="vat-note">크몽 VAT 포함 · 세금계산서 100% 발행</div>
+        <div class="foot-pill">맞춤 시안 1종 + 수정 3회 · 하자보수 2개월</div>
+      </div>
+      <div class="deluxe-right">
+        <ul>
+          <li>메인 + 서브 5~7페이지 맞춤 UI/UX 구축</li>
+          <li><strong>승소·성공사례 필터 아카이브 DB</strong> 기본 탑재</li>
+          <li><strong>1:1 비밀상담 예약</strong> 또는 네이버 예약 하이브리드 연동</li>
+          <li>5분 설문지 기반 전문직 세일즈 카피 초안 세팅</li>
+          <li>1분 한글 관리자 콘솔 (사례·칼럼·SEO·OG 직접 수정)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 2. Bottom 2-Col: STANDARD & PREMIUM -->
+    <div class="pkg-2col">
+      <div class="pkg">
+        <div>
+          <h3>STANDARD</h3>
+          <div class="sub">1인 개업 실속 원페이지형 · 납기 7일</div>
+          <div class="anchor-price">정상가 690,000원</div>
+          <div class="real-price">490,000원</div>
+          <div class="vat-note">크몽 VAT 포함 · 세금계산서 100%</div>
+          <div class="std-limit-note">
+            ※ 단순 명함형 소개 사이트가 필요한 1인 사무소용<br />(승소사례 DB·예약 기능 미포함)
+          </div>
+          <ul>
+            <li>반응형 원페이지 (5~6섹션) + 스팸차단 비밀상담 폼</li>
+            <li>5분 설문지 카피 초안 + 기본 한글 관리자(공지·배너)</li>
+            <li>네이버·구글 SEO 및 카톡 공유 이미지(OG) 세팅</li>
+          </ul>
+        </div>
+        <div class="pkg-foot">맞춤 시안 1종 + 수정 2회 · 무상 A/S 1개월</div>
+      </div>
+
+      <div class="pkg">
+        <div>
+          <h3>PREMIUM</h3>
+          <div class="sub">법무법인·다분야 고도화형 · 납기 21일</div>
+          <div class="anchor-price">정상가 2,190,000원</div>
+          <div class="real-price">1,690,000원</div>
+          <div class="vat-note">크몽 VAT 포함 · 세금계산서 100%</div>
+          <ul>
+            <li>메인 + 서브 10페이지 내외 풀 커스텀 구축</li>
+            <li>업종 특화 모듈 1종 기본 탑재</li>
+            <li>고급 기능 1종 기본 포함 (알림톡/PG결제/다국어 택1)</li>
+            <li>5분 설문지 카피 초안 + 전체 한글 관리자</li>
+            <li>원본 소스·DB·도메인 100% 사무소 영구 소유</li>
+          </ul>
+        </div>
+        <div class="pkg-foot">맞춤 시안 1종 + 수정 5회 · 3개월 우선 SLA</div>
+      </div>
+    </div>
+
+    <div class="bonus-box">
+      <h4>선착순 3개사 론칭 파트너 무상 보너스 3종 (포트폴리오·후기 작성 동의 조건)</h4>
+      <div class="bonus-grid">
+        <div class="bonus-item"><span>BONUS 01</span>네이버·구글 검색엔진 등록 대행</div>
+        <div class="bonus-item"><span>BONUS 02</span>카톡 공유 전용 대표 이미지(OG) 제작</div>
+        <div class="bonus-item"><span>BONUS 03</span>비개발자용 3분 맞춤 관리자 가이드</div>
+      </div>
+    </div>
+
+    <div class="opt-box">
+      <h4>필요 시에만 선택하는 투명 추가 옵션 (숨은 추가금 0원)</h4>
+      <div class="opt-grid">
+        <div class="opt-item">다국어 확장 (영/중/일 1언어당)<strong>+50만 원</strong></div>
+        <div class="opt-item">카카오 알림톡 실발송 연동<strong>+20만 원</strong></div>
+        <div class="opt-item">서브 상세 페이지 추가 (5P 단위)<strong>+25만 원</strong></div>
+      </div>
+      <p class="infra-note">
+        ※ <strong>서버 관리 걱정 제로:</strong> 도메인(연 약 2만)·독립 서버(월 1~2만)는 고객사 명의 직접 결제(마진 0원)이며, <strong>무중단 자동 복구 구성 및 평생 무료 SSL 보안 인증서 자동 갱신까지 모두 세팅해 드리므로, 오픈 후 대표님이 서버를 직접 관리하실 일은 전혀 없습니다.</strong><br />
+        ※ <strong>법적 검수 안내:</strong> 기본 카피 초안은 무료 세팅해 드리나, 변호사법·세무사법 등 업종별 광고 심의 및 최종 문구 검수 책임은 고객사에 있습니다.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

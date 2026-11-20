@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>detail-02-comparison (전문직)</title>
+  <link rel="stylesheet" href="./shared-kmong.css" />
+  <style>
+    html, body { height: auto; }
+    .canvas { width: 860px; height: auto; background: #ffffff; padding: 48px 46px 52px; }
+    .head .kicker { color: #1d4ed8; font-size: 14px; font-weight: 800; letter-spacing: 0.1em; }
+    .head h2 { margin-top: 8px; font-size: 32px; font-weight: 900; line-height: 1.3; }
+    .head p { margin-top: 10px; font-size: 16.5px; color: #475569; line-height: 1.5; }
+
+    table { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 15px; border: 1.5px solid #cbd5e1; border-radius: 14px; overflow: hidden; }
+    th, td { padding: 16px 12px; border-bottom: 1px solid #e2e8f0; text-align: left; line-height: 1.48; }
+    thead th { background: #f1f5f9; font-weight: 800; color: #1e293b; font-size: 14.5px; }
+    th.col-ew { background: #1d4ed8; color: #ffffff; font-size: 15px; }
+    td.col-ew { background: #eff6ff; color: #1e3a8a; font-weight: 800; }
+    td.label { font-weight: 900; color: #0f172a; background: #f8fafc; width: 18%; font-size: 14.5px; }
+
+    .tco-box {
+      margin-top: 26px; background: #0b0f19; color: #ffffff; border-radius: 18px; padding: 26px 28px;
+    }
+    .tco-box h3 { font-size: 20px; font-weight: 900; }
+    .tco-box p { font-size: 14.5px; color: #cbd5e1; margin-top: 6px; }
+    .bar-row { margin-top: 18px; }
+    .bar-label { display: flex; justify-content: space-between; font-size: 14.5px; font-weight: 700; margin-bottom: 8px; gap: 10px; }
+    .bar-track { height: 16px; background: rgba(255,255,255,0.12); border-radius: 999px; overflow: hidden; }
+    .bar-fill-bad { height: 100%; background: #64748b; width: 78%; border-radius: 999px; }
+    .bar-fill-agency { height: 100%; background: #f43f5e; width: 100%; border-radius: 999px; }
+    .bar-fill-ew { height: 100%; background: linear-gradient(90deg, #0ea5e9, #38bdf8); width: 32%; border-radius: 999px; }
+
+    .no-work-box {
+      margin-top: 24px; border: 1.5px solid #fecdd3; background: #fff1f2; border-radius: 16px; padding: 22px 24px;
+    }
+    .no-work-box h4 { font-size: 17px; font-weight: 900; color: #be123c; }
+    .no-work-box p { margin-top: 8px; font-size: 15px; line-height: 1.65; color: #4c0519; }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="head">
+      <div class="kicker">SMART COMPARISON</div>
+      <h2>왜 개업 전문직은 웹빌더 대신<br />eleveWeb 자체개발을 선택할까요?</h2>
+      <p>초기 견적뿐 아니라 3년 유지비, 승소사례 DB 확장성, 소유권까지 비교해 보세요.</p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>비교 기준</th>
+          <th>저가 복붙<br />(20~30만)</th>
+          <th>임대형<br />웹빌더</th>
+          <th>대형 에이전시<br />(400만+)</th>
+          <th class="col-ew">eleveWeb<br /><small style="font-weight:700;color:#e0f2fe;">(49·99·169만)</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">구축 비용</td>
+          <td>저렴하나 수정마다 추가금</td>
+          <td>초기 50~150만 원</td>
+          <td>300~700만 원+</td>
+          <td class="col-ew">49 / 99 / 169만 론칭가<br />(정찰제 · 추가금 0원)</td>
+        </tr>
+        <tr>
+          <td class="label">월 임대료</td>
+          <td>호스팅 종속 가능</td>
+          <td>매월 요금제 결제</td>
+          <td>유지보수 월 10~30만</td>
+          <td class="col-ew">제작사 월 관리비 0원<br />(서버·도메인 실비만)</td>
+        </tr>
+        <tr>
+          <td class="label">자산 소유권</td>
+          <td>재사용 불가</td>
+          <td>플랫폼 종속 (이전 불가)</td>
+          <td>계약 조건에 따라 다름</td>
+          <td class="col-ew">소스·DB·도메인 100%<br />사무소 영구 소유</td>
+        </tr>
+        <tr>
+          <td class="label">사례·칼럼</td>
+          <td>단순 이미지 배치</td>
+          <td>편집기 수동 학습</td>
+          <td>수정 시 건당 비용</td>
+          <td class="col-ew">1분 한글 관리자로<br />무제한 직접 등록</td>
+        </tr>
+        <tr>
+          <td class="label">개발 주체</td>
+          <td>초보 알바·복붙</td>
+          <td>비개발자 템플릿 조립</td>
+          <td>영업 후 하청 위탁</td>
+          <td class="col-ew">14년 차 개발 총괄<br />직접 설계 · 하청 0%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="tco-box">
+      <h3>3년 총소유비용(TCO) 실제 비교</h3>
+      <p>초기 구축비 + 36개월 유지·임대료를 합산하면 자체개발이 오히려 가장 경제적입니다.</p>
+      <div class="bar-row">
+        <div class="bar-label"><span>일반 로펌 에이전시 (초기 400만 + 월 유지비 15만×36)</span><span>약 940만 원</span></div>
+        <div class="bar-track"><div class="bar-fill-agency"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span>임대형 웹빌더 대행 (초기 100만 + 월 임대 5만×36)</span><span>약 280만 원 (소유권 0%)</span></div>
+        <div class="bar-track"><div class="bar-fill-bad"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span>eleveWeb Deluxe 론칭가 (초기 99만 + 월 관리비 0원)</span><span style="color:#38bdf8;">99만 원 + 실비만 유지 · 영구 소유</span></div>
+        <div class="bar-track"><div class="bar-fill-ew"></div></div>
+      </div>
+    </div>
+
+    <div class="no-work-box">
+      <h4>정직한 사전 안내: 이런 작업은 진행하지 않습니다</h4>
+      <p>
+        eleveWeb은 <strong>20~30만 원대 저가 복붙 템플릿 작업</strong>이나, 변호사법·세무사법·표시광고법에 위배되는 <strong>허위·과장 광고 사이트</strong>는 수주하지 않습니다. 14년 차 현업 개발 총괄이 직접 설계하는 만큼, 제대로 된 사무소 자산을 만드실 대표님만 모십니다.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

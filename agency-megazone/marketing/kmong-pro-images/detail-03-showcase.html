@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>detail-03-showcase (전문직 실제 샘플)</title>
+  <link rel="stylesheet" href="./shared-kmong.css" />
+  <style>
+    html, body { height: auto; }
+    .canvas { width: 860px; height: auto; background: #f8fafc; padding: 48px 46px 52px; }
+    .head .kicker { color: #1d4ed8; font-size: 14px; font-weight: 800; letter-spacing: 0.1em; }
+    .head h2 { margin-top: 8px; font-size: 32px; font-weight: 900; line-height: 1.3; }
+    .head p { margin-top: 10px; font-size: 16px; color: #475569; line-height: 1.5; }
+
+    .showcase-block {
+      margin-top: 28px; background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 22px;
+      padding: 26px; box-shadow: 0 12px 30px -12px rgba(15, 23, 42, 0.12);
+    }
+    .block-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+    .block-head .badge {
+      display: inline-block; font-size: 12.5px; font-weight: 800; color: #1d4ed8;
+      background: #e0f2fe; padding: 5px 12px; border-radius: 999px;
+    }
+    .block-head h3 { font-size: 21px; font-weight: 900; color: #0f172a; margin-top: 6px; }
+    .block-head .meta { font-size: 13px; font-weight: 700; color: #64748b; text-align: right; }
+
+    .device-pair { display: grid; grid-template-columns: 1.45fr 0.55fr; gap: 18px; align-items: stretch; }
+    /* PC Browser Frame */
+    .browser-frame {
+      border: 1.5px solid #cbd5e1; border-radius: 14px; overflow: hidden; background: #ffffff;
+      box-shadow: 0 8px 20px -8px rgba(15, 23, 42, 0.15);
+    }
+    .browser-bar {
+      background: #0f172a; color: #e2e8f0; padding: 9px 14px; display: flex; align-items: center; justify-content: space-between;
+      font-size: 11.5px; font-weight: 700;
+    }
+    .dots { display: flex; gap: 5px; }
+    .dots span { width: 8px; height: 8px; border-radius: 999px; background: #475569; }
+    .dots span:first-child { background: #ef4444; }
+    .dots span:nth-child(2) { background: #f59e0b; }
+    .dots span:nth-child(3) { background: #10b981; }
+    .browser-title { color: #cbd5e1; font-size: 11px; }
+
+    .sample-screen { background: #0f172a; color: #ffffff; position: relative; }
+    .sample-nav {
+      display: flex; justify-content: space-between; align-items: center; padding: 10px 16px;
+      background: rgba(11, 15, 25, 0.92); border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 11px;
+    }
+    .sample-nav strong { font-size: 12.5px; font-weight: 900; color: #f8fafc; }
+    .sample-nav .links { display: flex; gap: 10px; color: #cbd5e1; font-size: 10px; }
+    .sample-hero {
+      position: relative; height: 170px; overflow: hidden; display: flex; align-items: center; padding: 18px;
+    }
+    .sample-hero img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.42;
+    }
+    .sample-hero-txt { position: relative; z-index: 2; max-width: 82%; }
+    .sample-hero-txt .tag { font-size: 10px; font-weight: 800; color: #fbbf24; letter-spacing: 0.06em; }
+    .sample-hero-txt h4 { margin-top: 4px; font-size: 17px; font-weight: 900; line-height: 1.3; }
+    .sample-hero-txt p { margin-top: 5px; font-size: 11px; color: #e2e8f0; line-height: 1.4; }
+    .sample-hero-txt .btn {
+      display: inline-block; margin-top: 8px; background: #b45309; color: #fff; font-size: 10.5px;
+      font-weight: 800; padding: 5px 11px; border-radius: 6px;
+    }
+    .sample-sub-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 12px 14px; background: #ffffff; color: #0f172a;
+    }
+    .mini-box { border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px; background: #f8fafc; }
+    .mini-box .img-row { display: flex; align-items: center; gap: 7px; }
+    .mini-box img { width: 28px; height: 28px; border-radius: 999px; object-fit: cover; }
+    .mini-box strong { font-size: 10.5px; font-weight: 800; display: block; }
+    .mini-box span { font-size: 9.5px; color: #64748b; display: block; margin-top: 2px; }
+
+    /* Mobile Frame */
+    .mobile-frame {
+      border: 4px solid #1e293b; border-radius: 22px; overflow: hidden; background: #ffffff;
+      box-shadow: 0 10px 24px -8px rgba(15, 23, 42, 0.2); display: flex; flex-direction: column;
+    }
+    .mobile-notch {
+      background: #1e293b; color: #ffffff; text-align: center; font-size: 9.5px; font-weight: 700; padding: 5px 0;
+    }
+    .mobile-hero {
+      position: relative; height: 118px; background: #0f172a; color: #ffffff; padding: 12px; display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .mobile-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.4; }
+    .mobile-hero .txt { position: relative; z-index: 2; }
+    .mobile-hero strong { font-size: 12px; font-weight: 900; display: block; line-height: 1.25; }
+    .mobile-hero span { font-size: 9.5px; color: #fde68a; font-weight: 700; }
+    .mobile-body { padding: 10px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 6px; background: #f8fafc; }
+    .m-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 7px 9px; font-size: 10px; }
+    .m-card strong { display: block; color: #0f172a; font-size: 10.5px; }
+    .m-card span { color: #64748b; font-size: 9.5px; }
+    .m-cta { background: #1d4ed8; color: #ffffff; text-align: center; font-size: 10.5px; font-weight: 800; padding: 7px; border-radius: 8px; }
+
+    .pro-banner {
+      margin-top: 26px; background: #0b0f19; color: #ffffff; border-radius: 18px; padding: 24px 28px;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    }
+    .pro-banner h4 { font-size: 19px; font-weight: 900; color: #38bdf8; }
+    .pro-banner p { margin-top: 6px; font-size: 14.5px; color: #cbd5e1; line-height: 1.55; }
+    .pro-stat {
+      flex-shrink: 0; text-align: center; background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 14px 22px;
+    }
+    .pro-stat strong { display: block; font-size: 26px; font-weight: 900; color: #ffffff; }
+    .pro-stat span { font-size: 12.5px; color: #7dd3fc; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="head">
+      <div class="kicker">LIVE SAMPLE ARCHITECTURE</div>
+      <h2>실제 구축된 전문직 반응형 샘플 화면</h2>
+      <p>추상적인 설명이 아닌, 법무법인·세무법인 등 실제 구동되는 PC·모바일 반응형 UI를 확인하세요.</p>
+    </div>
+
+    <!-- Sample 1: 법무법인 (/samples/law) -->
+    <div class="showcase-block">
+      <div class="block-head">
+        <div>
+          <span class="badge">샘플 01 · 변호사 / 법무법인</span>
+          <h3>법무법인(로펌) 수임 전환형 반응형 구축</h3>
+        </div>
+        <div class="meta">승소사례 필터 DB · 1:1 비밀상담<br />대표번호 02-000-0000</div>
+      </div>
+
+      <div class="device-pair">
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div class="browser-title">법무법인 샘플 · PC 데스크톱 화면</div>
+            <span>HTTPS 보안</span>
+          </div>
+          <div class="sample-screen">
+            <div class="sample-nav">
+              <strong>법무법인 정율</strong>
+              <div class="links"><span>변호사 소개</span><span>승소사례</span><span>전문분야</span><span>1:1 비밀상담</span></div>
+            </div>
+            <div class="sample-hero">
+              <img src="../../frontend/public/images/samples/law-hero.jpg" alt="법무법인 히어로" />
+              <div class="sample-hero-txt">
+                <div class="tag">CRIMINAL · CORPORATE · FAMILY</div>
+                <h4>결과로 증명하는 실전 법률 파트너</h4>
+                <p>형사·기업자문·가사 사건별 승소사례와 1:1 비밀보장 상담 예약</p>
+                <span class="btn">비밀상담 예약하기</span>
+              </div>
+            </div>
+            <div class="sample-sub-row">
+              <div class="mini-box">
+                <div class="img-row">
+                  <img src="../../frontend/public/images/samples/law-attorney1.jpg" alt="대표변호사" />
+                  <div><strong>김OO 대표변호사</strong><span>형사·기업 총괄</span></div>
+                </div>
+              </div>
+              <div class="mini-box">
+                <strong>[무혐의] 기업 배임 사건</strong>
+                <span>검찰 단계 불기소 처분</span>
+              </div>
+              <div class="mini-box">
+                <strong>[승소] 재산분할 방어</strong>
+                <span>청구액 85% 방어 성공</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mobile-frame">
+          <div class="mobile-notch">모바일 반응형</div>
+          <div class="mobile-hero">
+            <img src="../../frontend/public/images/samples/law-hero.jpg" alt="모바일 법무법인" />
+            <div class="txt">
+              <span>비밀보장 1:1 상담</span>
+              <strong>법무법인 정율</strong>
+            </div>
+          </div>
+          <div class="mobile-body">
+            <div class="m-card"><strong>승소사례 DB</strong><span>형사 · 가사 · 부동산 필터</span></div>
+            <div class="m-card"><strong>상담문의 02-000-0000</strong><span>사전 예약 비밀 상담</span></div>
+            <div class="m-cta">1:1 비밀상담 신청</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sample 2: 세무법인 (/samples/tax) -->
+    <div class="showcase-block">
+      <div class="block-head">
+        <div>
+          <span class="badge">샘플 02 · 세무사 / 노무사 / 행정사</span>
+          <h3>세무·회계법인 절세 솔루션 반응형 구축</h3>
+        </div>
+        <div class="meta">기장·경정청구 아카이브 · 네이버예약<br />대표번호 02-000-0000</div>
+      </div>
+
+      <div class="device-pair">
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div class="browser-title">세무법인 샘플 · PC 데스크톱 화면</div>
+            <span>HTTPS 보안</span>
+          </div>
+          <div class="sample-screen">
+            <div class="sample-nav">
+              <strong>세무법인 한결</strong>
+              <div class="links"><span>세무사 소개</span><span>절세사례</span><span>기장안내</span><span>상담예약</span></div>
+            </div>
+            <div class="sample-hero" style="background:#0f2942;">
+              <img src="../../frontend/public/images/samples/tax-hero.jpg" alt="세무법인 히어로" />
+              <div class="sample-hero-txt">
+                <div class="tag" style="color:#38bdf8;">TAX · ACCOUNTING · CONSULTING</div>
+                <h4>대표님의 세금을 지키는 정밀 절세 파트너</h4>
+                <p>법인전환·병의원 세무·상속증여 맞춤형 기장 및 경정청구 진단</p>
+                <span class="btn" style="background:#0284c7;">기장·절세 무료 진단</span>
+              </div>
+            </div>
+            <div class="sample-sub-row">
+              <div class="mini-box">
+                <div class="img-row">
+                  <img src="../../frontend/public/images/samples/tax-advisor1.jpg" alt="대표세무사" />
+                  <div><strong>박OO 대표세무사</strong><span>국세청 조사팀 출신</span></div>
+                </div>
+              </div>
+              <div class="mini-box">
+                <strong>[절세] 병의원 성실신고</strong>
+                <span>연 세액 3,200만 절감</span>
+              </div>
+              <div class="mini-box">
+                <strong>[법인전환] 세액공제</strong>
+                <span>고용증대·창업 감면</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mobile-frame">
+          <div class="mobile-notch">모바일 반응형</div>
+          <div class="mobile-hero" style="background:#0f2942;">
+            <img src="../../frontend/public/images/samples/tax-hero.jpg" alt="모바일 세무법인" />
+            <div class="txt">
+              <span style="color:#7dd3fc;">기장 · 절세 · 상속증여</span>
+              <strong>세무법인 한결</strong>
+            </div>
+          </div>
+          <div class="mobile-body">
+            <div class="m-card"><strong>절세 사례 아카이브</strong><span>법인 · 병의원 · 부동산</span></div>
+            <div class="m-card"><strong>대표전화 02-000-0000</strong><span>비대면 서류 접수 가능</span></div>
+            <div class="m-cta">기장 상담 예약하기</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pro-banner">
+      <div>
+        <h4>14년 차 현업 기업 시스템 개발 총괄의 무중단 설계</h4>
+        <p>
+          대기업·이커머스·기업 시스템을 14년간 구축하고 운영해 온 총괄 개발자가 직접 코드를 작성합니다.<br />
+          보안 취약점 없는 정석 구조로, 개업 후 수년이 지나도 느려지거나 멈추지 않습니다.
+        </p>
+      </div>
+      <div class="pro-stat">
+        <strong>14년 차</strong>
+        <span>현업 개발 총괄 직접 제작</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

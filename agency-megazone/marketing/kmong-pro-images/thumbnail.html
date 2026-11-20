@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>eleveWeb 전문직 크몽 썸네일</title>
+  <link rel="stylesheet" href="./shared-kmong.css" />
+  <style>
+    html, body { width: 652px; height: 488px; overflow: hidden; background: #0b0f19; }
+    .thumb {
+      width: 652px;
+      height: 488px;
+      background: radial-gradient(circle at 85% 20%, rgba(14, 165, 233, 0.25), transparent 50%),
+                  radial-gradient(circle at 15% 85%, rgba(29, 78, 216, 0.25), transparent 50%),
+                  #0b0f19;
+      color: #ffffff;
+      padding: 32px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .top-bar { display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .ew-badge {
+      width: 34px; height: 34px; border-radius: 10px;
+      background: linear-gradient(135deg, #0ea5e9, #1d4ed8);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 14px; letter-spacing: -0.04em;
+    }
+    .brand-name { font-size: 16px; font-weight: 800; color: #f8fafc; }
+    .tax-badge {
+      font-size: 11px; font-weight: 800; color: #bae6fd;
+      background: rgba(14, 165, 233, 0.16); border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 6px 12px; border-radius: 999px;
+    }
+    .main-grid { display: grid; grid-template-columns: 1.28fr 0.72fr; gap: 20px; align-items: center; }
+    .launch-tag {
+      display: inline-block; font-size: 12px; font-weight: 800; color: #fde68a;
+      background: rgba(245, 158, 11, 0.14); border: 1px solid rgba(251, 191, 36, 0.35);
+      padding: 5px 11px; border-radius: 8px; margin-bottom: 14px;
+    }
+    .hero-copy {
+      font-size: 40px; font-weight: 900; line-height: 1.15; letter-spacing: -0.03em;
+    }
+    .hero-copy .accent { color: #38bdf8; }
+    .sub-copy {
+      margin-top: 14px; font-size: 15px; line-height: 1.5; color: #cbd5e1; font-weight: 500;
+    }
+    .sub-copy strong { color: #ffffff; font-weight: 800; }
+    .side-cards { display: flex; flex-direction: column; gap: 10px; }
+    .mini-card {
+      background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px; padding: 12px 14px;
+    }
+    .mini-card .label { font-size: 11px; font-weight: 700; color: #7dd3fc; }
+    .mini-card .val { font-size: 14px; font-weight: 800; color: #ffffff; margin-top: 3px; }
+    .bottom-strip {
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 14px;
+      font-size: 12px; font-weight: 700; color: #94a3b8;
+    }
+    .bottom-strip span strong { color: #e2e8f0; }
+  </style>
+</head>
+<body>
+  <div class="thumb">
+    <div class="top-bar">
+      <div class="brand">
+        <div class="ew-badge">eW</div>
+        <span class="brand-name">eleveWeb</span>
+      </div>
+      <div class="tax-badge">세금계산서 100% 발행</div>
+    </div>
+
+    <div class="main-grid">
+      <div>
+        <div class="launch-tag">선착순 3개사 론칭 특가 · 49만 원~</div>
+        <h1 class="hero-copy">
+          전문직 전용<br />
+          임대료 <span class="accent">0원</span><br />
+          <span class="accent">자체개발</span>+관리자
+        </h1>
+        <p class="sub-copy">
+          변호사 · 세무사 · 노무사 · 행정사<br />
+          <strong>14년 차 개발 총괄 직접 제작 · 영구 소유</strong>
+        </p>
+      </div>
+
+      <div class="side-cards">
+        <div class="mini-card">
+          <div class="label">수임 전환 구조</div>
+          <div class="val">승소·성공사례 DB</div>
+        </div>
+        <div class="mini-card">
+          <div class="label">글쓰기 부담 제로</div>
+          <div class="val">5분 설문지 카피 세팅</div>
+        </div>
+        <div class="mini-card">
+          <div class="label">비개발자 운영</div>
+          <div class="val">1분 한글 관리자 제공</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-strip">
+      <span><strong>하청 0%</strong> 현업 개발 총괄 직접 구축</span>
+      <span><strong>100%</strong> 소스·도메인 사무소 소유</span>
+      <span><strong>1:1</strong> 비밀보장 상담예약</span>
+    </div>
+  </div>
+</body>
+</html>
